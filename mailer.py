@@ -52,6 +52,10 @@ PROFILES = {
         "folder": "Finance Digest",
         "subject_prefix": "💰 金融精选",
     },
+    "consumer": {
+        "folder": "Consumer Digest",
+        "subject_prefix": "🛒 消费精选",
+    },
 }
 
 # ── HTML 模板 ──────────────────────────────────────────────
@@ -217,9 +221,9 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="发送日报邮件")
     parser.add_argument(
         "--profile",
-        choices=["tech", "finance"],
+        choices=["tech", "finance", "consumer"],
         required=True,
-        help="日报类型：tech（科技）或 finance（金融）",
+        help="日报类型：tech（科技）、finance（金融）或 consumer（消费品）",
     )
     parser.add_argument(
         "--date",
