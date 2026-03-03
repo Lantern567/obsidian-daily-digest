@@ -16,13 +16,16 @@ from pathlib import Path
 # ─── 优先解析 --profile，在任何 import config 之前完成猴子补丁 ───
 # 这样所有 collectors 里的 `import config` 都会自动读取到正确的配置模块
 _pre_parser = argparse.ArgumentParser(add_help=False)
-_pre_parser.add_argument("--profile", choices=["tech", "finance"], default="tech")
+_pre_parser.add_argument("--profile", choices=["tech", "finance", "consumer"], default="tech")
 _pre_args, _ = _pre_parser.parse_known_args()
 
 sys.path.insert(0, str(Path(__file__).parent))
 
 if _pre_args.profile == "finance":
     import config_finance as config
+    sys.modules["config"] = config
+elif _pre_args.profile == "consumer":
+    import config_consumer as config
     sys.modules["config"] = config
 else:
     import config
@@ -124,8 +127,8 @@ def run(
         import json
         inbox_dir = Path(__file__).parent / "inbox"
         inbox_dir.mkdir(exist_ok=True)
-        # 金融日报用 YYYY-MM-DD-finance.json，科技日报用 YYYY-MM-DD.json
-        profile_suffix = "-finance" if _pre_args.profile == "finance" else ""
+        # 金融日报用 YYYY-MM-DD-finance.json，消费日报用 YYYY-MM-DD-consumer.json，科技日报用 YYYY-MM-DD.json
+        profile_suffix = "-finance" if _pre_args.profile == "finance" else "-consumer" if _pre_args.profile == "consumer" else ""
         inbox_file = inbox_dir / f"{digest_date}{profile_suffix}.json"
         inbox_file.write_text(
             json.dumps(raw_items, ensure_ascii=False, indent=2),
@@ -181,9 +184,9 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--profile",
-        choices=["tech", "finance"],
+        choices=["tech", "finance", "consumer"],
         default="tech",
-        help="日报类型：tech（科技，默认）或 finance（金融）",
+        help="日报类型：tech（科技，默认）、finance（金融）或 consumer（消费品）",
     )
     parser.add_argument(
         "--source",

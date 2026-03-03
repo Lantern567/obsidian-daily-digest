@@ -62,16 +62,17 @@ RSS_FEEDS = [
     "https://www.tomsguide.com/feeds/all",                  # Tom's Guide 测评
     "https://www.gsmarena.com/rss-news-reviews.php3",       # GSMArena 手机
     # ── 汽车（国际）────────────────────────────
-    "https://www.caranddriver.com/rss/articles.xml",        # Car and Driver
-    "https://www.autoblog.com/rss.xml",                     # Autoblog
-    "https://www.motortrend.com/feeds/",                    # Motor Trend
+    "https://electrek.co/feed/",                            # Electrek（EV专注，高质量）
+    "https://www.thedrive.com/rss",                         # The Drive（专业汽车评测）
+    "https://www.caranddriver.com/rss/all.xml",             # Car and Driver（修正URL）
+    "https://www.motor1.com/rss/news/all/",                 # Motor1（国际汽车资讯）
     # ── 消费品 / 家电 / 家居（国际）────────────
     "https://www.consumerreports.org/cro/news/index.htm",   # Consumer Reports
-    "https://www.apartmenttherapy.com/main.rss",           # Apartment Therapy 家居
+    "https://www.apartmenttherapy.com/main.rss",            # Apartment Therapy 家居
     "https://www.cnet.com/rss/news/",                       # CNET 综合科技消费
     # ── 国内消费品（中文）───────────────────────
-    "https://feed.smzdm.com/",                              # 什么值得买（值得关注的消费品）
-    "https://rss.autohome.com.cn/info/news/index.xml",      # 汽车之家新闻
+    "https://sspai.com/feed",                               # 少数派（数码产品深度评测）
+    "https://www.ithome.com/rss/",                          # IT之家（科技消费资讯）
 ]
 
 RSS_MAX_ITEMS_PER_FEED = 3
